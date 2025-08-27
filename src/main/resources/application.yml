@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: digest
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+# external API settings
+integrations:
+  hn:
+    base-url: https://hacker-news.firebaseio.com/v0
+
+# (optional) Feign timeouts/logging
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 4000
+        readTimeout: 5000
+        loggerLevel: BASIC
