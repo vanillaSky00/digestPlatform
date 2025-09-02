@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hn;
+package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
 
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 import io.github.vanillasky.digestplatform.domain.model.SourceType;

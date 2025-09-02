@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hn;
+package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         name = "hn",
-        url = "${integrations.hn.base-url}"
+        url = "${source.hn.base-url}"
 )
 public interface HackerNewsClient {
     @GetMapping("/topstories.json")

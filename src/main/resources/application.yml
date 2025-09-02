@@ -1,15 +1,24 @@
 spring:
   application:
     name: digest
+
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
       - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
 
+  config:
+    import: "optional:configtree:/run/secrets/"
+
 # external API settings
-integrations:
+source:
   hn:
     base-url: https://hacker-news.firebaseio.com/v0
+
+  guardian:
+    base-url: https://content.guardianapis.com
+
+  newsapi: {}
 
 # (optional) Feign timeouts/logging
 feign:

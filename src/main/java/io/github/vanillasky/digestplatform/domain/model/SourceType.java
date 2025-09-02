@@ -1,5 +1,5 @@
 package io.github.vanillasky.digestplatform.domain.model;
 
 public enum SourceType {
-    HN, YT, IG
+    HN, YT, IG, GUARDIAN,
 }

@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hn;
+package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
 
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 import io.github.vanillasky.digestplatform.domain.ports.out.ContentSourcePort;
@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Qualifier("HackerNews")
 public class HackerNewsAdapter implements ContentSourcePort {
 
     private final HackerNewsClient client;

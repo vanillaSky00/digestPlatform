@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hn;
+package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
 
 import java.util.List;
 
