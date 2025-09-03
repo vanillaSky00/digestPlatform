@@ -17,6 +17,7 @@ source:
 
   guardian:
     base-url: https://content.guardianapis.com
+    api-key : ${GUARDIAN_API_KEY}
 
   newsapi: {}
 
@@ -28,3 +29,16 @@ feign:
         connectTimeout: 4000
         readTimeout: 5000
         loggerLevel: BASIC
+
+#With configtree, the files themselves become properties:
+#
+#  /run/secrets/guardian.api-key → guardian.api-key
+#
+#  /run/secrets/newsapi.api-key → news.api-key
+
+line.bot:
+  channel-token: ${LINE_CHANNEL_TOKEN}
+  channel-secret: ${LINE_CHANNEL_SECRET}
+  handler:
+    path: /callback
+    #The starter binds /callback for you; you don’t need a manual @PostMapping. This is exactly how the official sample is set up.

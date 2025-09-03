@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class digestController {
+public class DigestController {
 
     @GetMapping("/preview")
     public String previewDigest() {

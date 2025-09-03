@@ -12,7 +12,7 @@ import java.time.Duration;
 // NOTE: no @Configuration here on purpose
 public class GuardianFeignConfig {
 
-    @Value("${guardian.api-key}")
+    @Value("${source.guardian.api-key}")
     private String apiKey;
 
     @Bean
