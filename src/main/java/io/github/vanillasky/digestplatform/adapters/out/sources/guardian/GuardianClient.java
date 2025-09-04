@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.guardian;
+package io.github.vanillasky.digestplatform.adapters.out.sources.guardian;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.app.repository;
+package io.github.vanillasky.digestplatform.adapters.out.persistence.entity;
 
 import io.github.vanillasky.digestplatform.domain.model.SourceType;
 import jakarta.persistence.*;
@@ -10,13 +10,18 @@ import java.util.UUID;
 @Table(
         name = "articles",
         uniqueConstraints = {
-
+                @UniqueConstraint(name = "uk_articles_source_external", columnNames = {"source", "external_id"}),
+                @UniqueConstraint(name = "uk_articles_url_hash_hex", columnNames = {"url_hash_hex"})
+        },
+        indexes = {
+                @Index(name = "idx_articles_published_at", columnList = "published_at")
         }
 )
-public class Article {
+public class ArticleEntity {
 
     @Id
     @GeneratedValue
+    @Column(columnDefinition = "uuid")
     private UUID id;
 
     @Enumerated(EnumType.STRING)
@@ -26,24 +31,29 @@ public class Article {
     @Column(name = "external_id", length = 128)
     private String externalId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String title;
 
-    @Column(nullable = false, length = 2000)
+    @Column(nullable = false, columnDefinition = "text")
     private String url;
 
-    @Column(name = "url_hash", nullable = false)
-    @Lob
-    private byte[] urlHash;
+    //find digest content for given url
+    @Column(name = "url_hash_hex", length = 64, nullable = false)
+    private String urlHashHex;
 
     @Column(name = "author")
     private String author;
 
-    @Column(name = "published_at")
-    private String publishedAt;
+    @Column(name = "published_at", columnDefinition = "timestamptz")
+    private Instant publishedAt;
 
-    @Column(name = "first_seen_at", nullable = false)
+    @Column(name = "first_seen_at", nullable = false, columnDefinition = "timestamptz")
     private Instant firstSeenAt = Instant.now();
+
+    @PrePersist
+    void prePersist() {
+        if (firstSeenAt == null) firstSeenAt = Instant.now();
+    }
 
     public UUID getId() {
         return id;
@@ -85,12 +95,12 @@ public class Article {
         this.url = url;
     }
 
-    public byte[] getUrlHash() {
-        return urlHash;
+    public String getUrlHashHex() {
+        return urlHashHex;
     }
 
-    public void setUrlHash(byte[] urlHash) {
-        this.urlHash = urlHash;
+    public void setUrlHashHex(String urlHash) {
+        this.urlHashHex = urlHashHex;
     }
 
     public String getAuthor() {
@@ -101,11 +111,11 @@ public class Article {
         this.author = author;
     }
 
-    public String getPublishedAt() {
+    public Instant getPublishedAt() {
         return publishedAt;
     }
 
-    public void setPublishedAt(String publishedAt) {
+    public void setPublishedAt(Instant publishedAt) {
         this.publishedAt = publishedAt;
     }
 

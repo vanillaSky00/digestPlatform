@@ -1,7 +1,7 @@
-package io.github.vanillasky.digestplatform.app.config;
+package io.github.vanillasky.digestplatform.config;
 
-import io.github.vanillasky.digestplatform.adapters.sources.guardian.GuardianClient;
-import io.github.vanillasky.digestplatform.adapters.sources.hackernews.HackerNewsClient;
+import io.github.vanillasky.digestplatform.adapters.out.sources.guardian.GuardianClient;
+import io.github.vanillasky.digestplatform.adapters.out.sources.hackernews.HackerNewsClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 

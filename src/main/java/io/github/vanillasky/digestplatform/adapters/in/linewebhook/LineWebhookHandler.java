@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.app.controller;
+package io.github.vanillasky.digestplatform.adapters.in.linewebhook;
 
 
 
@@ -15,10 +15,10 @@ import java.util.List;
 
 
 @LineMessageHandler
-public class LineBotController {
+public class LineWebhookHandler {
     private final MessagingApiClient messagingApiClient;//a small HTTP client that talks to LINE’s Messaging API.
 
-    public LineBotController(MessagingApiClient messagingApiClient) {
+    public LineWebhookHandler(MessagingApiClient messagingApiClient) {
         this.messagingApiClient = messagingApiClient;
     }
 

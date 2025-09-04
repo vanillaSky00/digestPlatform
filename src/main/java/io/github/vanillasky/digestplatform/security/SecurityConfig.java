@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.app.security;
+package io.github.vanillasky.digestplatform.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

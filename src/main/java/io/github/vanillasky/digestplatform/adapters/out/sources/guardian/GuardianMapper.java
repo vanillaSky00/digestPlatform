@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.guardian;
+package io.github.vanillasky.digestplatform.adapters.out.sources.guardian;
 
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 import io.github.vanillasky.digestplatform.domain.model.SourceType;

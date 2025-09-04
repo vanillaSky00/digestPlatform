@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
+package io.github.vanillasky.digestplatform.adapters.out.sources.hackernews;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

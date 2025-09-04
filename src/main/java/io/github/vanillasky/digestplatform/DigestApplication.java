@@ -1,8 +1,5 @@
-package io.github.vanillasky.digestplatform.app;
+package io.github.vanillasky.digestplatform;
 
-import io.github.vanillasky.digestplatform.adapters.sources.guardian.GuardianClient;
-import io.github.vanillasky.digestplatform.adapters.sources.guardian.GuardianSearchItem;
-import io.github.vanillasky.digestplatform.adapters.sources.hackernews.HackerNewsClient;
 import io.github.vanillasky.digestplatform.domain.ports.in.AggregateFeedUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

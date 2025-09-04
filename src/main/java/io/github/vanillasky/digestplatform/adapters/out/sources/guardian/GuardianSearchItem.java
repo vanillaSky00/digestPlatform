@@ -1,4 +1,4 @@
-package io.github.vanillasky.digestplatform.adapters.sources.guardian;
+package io.github.vanillasky.digestplatform.adapters.out.sources.guardian;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

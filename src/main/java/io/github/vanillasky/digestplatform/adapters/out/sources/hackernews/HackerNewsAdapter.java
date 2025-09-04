@@ -1,8 +1,7 @@
-package io.github.vanillasky.digestplatform.adapters.sources.hackernews;
+package io.github.vanillasky.digestplatform.adapters.out.sources.hackernews;
 
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 import io.github.vanillasky.digestplatform.domain.ports.out.ContentSourcePort;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Arrays;
 import java.util.List;
