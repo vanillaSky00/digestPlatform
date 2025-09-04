@@ -24,8 +24,8 @@ public interface ArticleJpaRepository extends JpaRepository<ArticleEntity, UUID>
 
     @Query("""
         SELECT a FROM ArticleEntity a
-            WHERE a.urlHash = :urlHash
+            WHERE a.urlHashHex = :urlHashHex
     """)
-    Optional<ArticleEntity> findByUrlHash(
-            @Param("urlHash") byte[] urlHash);
+    Optional<ArticleEntity> findByUrlHashHex(
+            @Param("urlHashHex") String urlHashHex);
 }

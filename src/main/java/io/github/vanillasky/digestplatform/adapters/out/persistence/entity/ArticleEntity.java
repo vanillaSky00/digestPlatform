@@ -99,7 +99,7 @@ public class ArticleEntity {
         return urlHashHex;
     }
 
-    public void setUrlHashHex(String urlHash) {
+    public void setUrlHashHex(String urlHashHex) {
         this.urlHashHex = urlHashHex;
     }
 
