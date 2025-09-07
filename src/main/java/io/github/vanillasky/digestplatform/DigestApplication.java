@@ -1,5 +1,6 @@
 package io.github.vanillasky.digestplatform;
 
+import io.github.vanillasky.digestplatform.application.service.ArticleIngestionService;
 import io.github.vanillasky.digestplatform.domain.ports.in.AggregateFeedUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +18,13 @@ public class DigestApplication {
             SpringApplication.run(DigestApplication.class, args);
 
         var useCase = ctx.getBean(AggregateFeedUseCase.class);
-        useCase.topAcrossSources(3).forEach(i ->
-                log.info("[USECASE] {} | {} | {}", i.source(), i.title(), i.url())
-        );
+
+        ArticleIngestionService articleIngestionService = ctx.getBean(ArticleIngestionService.class);
+        articleIngestionService.saveAllFeedItem(useCase.topAcrossSources(10));
+//        useCase.topAcrossSources(10).forEach(i ->
+//                log.info("[USECASE] {} | {} | {} | {} | {} | {} | {}", i.id(), i.source(), i.title(), i.url(), i.author(), i.score(), i.publishedAt())
+//        );
+
 
 //        var hn = ctx.getBean(HackerNewsClient.class);
 //        long[] ids = hn.topStories();
@@ -30,3 +35,6 @@ public class DigestApplication {
     }
 
 }
+
+//make a profile to let yml be not ambiguous
+// docker compose -f docker-compose.yml up -d db

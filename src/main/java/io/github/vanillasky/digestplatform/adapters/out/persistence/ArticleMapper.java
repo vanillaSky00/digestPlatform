@@ -6,9 +6,11 @@ import io.github.vanillasky.digestplatform.adapters.out.persistence.utils.Urls;
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 
 import java.time.Instant;
+import java.util.List;
 
+//map FeedItem to ArticleEntity
 public class ArticleMapper {
-    public ArticleEntity toNewEntity(FeedItem f) {
+    static public ArticleEntity toNewEntity(FeedItem f) {
         var a = new ArticleEntity();
         a.setSource(f.source());
         a.setExternalId(f.id());
@@ -20,4 +22,12 @@ public class ArticleMapper {
         a.setFirstSeenAt(Instant.now());
         return a;
     }
+
+    static public List<ArticleEntity> toNewEntityList(List<FeedItem> fs) {
+        return fs.stream()
+                .map(ArticleMapper::toNewEntity)
+                .toList();
+    }
+
+    private ArticleMapper() {}
 }
