@@ -4,33 +4,54 @@ package io.github.vanillasky.digestplatform.adapters.in.linewebhook;
 
 import com.linecorp.bot.messaging.client.MessagingApiClient;
 import com.linecorp.bot.messaging.model.ReplyMessageRequest;
-import com.linecorp.bot.messaging.model.TextMessage;
 import com.linecorp.bot.spring.boot.handler.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.handler.annotation.LineMessageHandler;
 import com.linecorp.bot.webhook.model.Event;
 import com.linecorp.bot.webhook.model.MessageEvent;
-import com.linecorp.bot.webhook.model.TextMessageContent;
+import io.github.vanillasky.digestplatform.application.service.ArticleQueryService;
 
 import java.util.List;
 
 
 @LineMessageHandler
 public class LineWebhookHandler {
-    private final MessagingApiClient messagingApiClient;//a small HTTP client that talks to LINE’s Messaging API.
+    private final MessagingApiClient messagingApiClient;
+    private final ArticleQueryService articleQueryService;
 
-    public LineWebhookHandler(MessagingApiClient messagingApiClient) {
+    public LineWebhookHandler(
+            MessagingApiClient messagingApiClient,
+            ArticleQueryService articleQueryService) {
         this.messagingApiClient = messagingApiClient;
+        this.articleQueryService = articleQueryService;
     }
+
+//    //When a user messages your bot, LINE sends a POST to your webhook URL.
+//    @EventMapping
+//    public void handleTextMessageEvent(MessageEvent event) {
+//        System.out.println("event: " + event);
+//        final String originalMessageText = ((TextMessageContent) event.message()).text();
+//        messagingApiClient.replyMessage(
+//                new ReplyMessageRequest.Builder(
+//                        event.replyToken(),
+//                        List.of(new TextMessage(originalMessageText))
+//                ).build()
+//        );
+//    }
 
     //When a user messages your bot, LINE sends a POST to your webhook URL.
     @EventMapping
     public void handleTextMessageEvent(MessageEvent event) {
-        System.out.println("event: " + event);
-        final String originalMessageText = ((TextMessageContent) event.message()).text();
+        var token = event.replyToken();
+
+        var articles = articleQueryService.latestOfEach(
+                List.of("HN", "GUARDIAN"),
+                5);
+
+        var messages = DigestRenderer.toTextMessages(articles);
+
         messagingApiClient.replyMessage(
                 new ReplyMessageRequest.Builder(
-                        event.replyToken(),
-                        List.of(new TextMessage(originalMessageText))
+                        token, messages
                 ).build()
         );
     }

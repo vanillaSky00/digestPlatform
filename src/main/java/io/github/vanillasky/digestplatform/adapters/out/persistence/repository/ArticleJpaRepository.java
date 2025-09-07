@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,4 +29,27 @@ public interface ArticleJpaRepository extends JpaRepository<ArticleEntity, UUID>
     """)
     Optional<ArticleEntity> findByUrlHashHex(
             @Param("urlHashHex") String urlHashHex);
+
+    @Query(
+            value = """
+      WITH ranked AS (
+        SELECT a.*,
+               ROW_NUMBER() OVER (
+                 PARTITION BY a.source
+                 ORDER BY a.published_at DESC, a.id DESC
+               ) AS rn
+        FROM articles a
+        WHERE a.source IN (:sources)
+      )
+      SELECT *
+      FROM ranked
+      WHERE rn <= :n
+      ORDER BY source, published_at DESC, id DESC
+      """,
+            nativeQuery = true
+    )
+    List<ArticleEntity> findLatestOfEach(
+            @Param("sources") List<String> sources,
+            @Param("n") int n
+    );
 }

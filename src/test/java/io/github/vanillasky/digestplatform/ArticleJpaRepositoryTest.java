@@ -1,20 +1,11 @@
 package io.github.vanillasky.digestplatform;
 
-import io.github.vanillasky.digestplatform.adapters.out.persistence.ArticleMapper;
 import io.github.vanillasky.digestplatform.adapters.out.persistence.entity.ArticleEntity;
 import io.github.vanillasky.digestplatform.adapters.out.persistence.repository.ArticleJpaRepository;
-import io.github.vanillasky.digestplatform.adapters.out.persistence.utils.Hashes;
-import io.github.vanillasky.digestplatform.adapters.out.persistence.utils.Urls;
-import io.github.vanillasky.digestplatform.application.service.ArticleIngestionService;
-import io.github.vanillasky.digestplatform.domain.model.FeedItem;
 import io.github.vanillasky.digestplatform.domain.model.SourceType;
-import io.github.vanillasky.digestplatform.domain.ports.in.AggregateFeedUseCase;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
