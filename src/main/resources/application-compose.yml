@@ -3,9 +3,9 @@ spring:
     name: digest
 
   datasource:
-    url: jdbc:postgresql://db:5432/digest
-    username: digest
-    password: digest
+    url: jdbc:postgresql://db:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
@@ -38,9 +38,10 @@ source:
     api-key : ${GUARDIAN_API_KEY}
 
   scheduled:
-    cron: "0 30 14 * * ?"
+    cron: "0 * * * * ?"   # every 1 minute
+    #cron: "0 30 14 * * ?"
     zone: "Asia/Taipei"
-    batch-size: 50
+    batch-size: 10
 
   newsapi: {}
 

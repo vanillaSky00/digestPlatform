@@ -23,7 +23,7 @@ public class FeedIngestionJob {
         this.useCase = useCase;
     }
 
-    //@Value("${source.scheduled.batch-size}")
+    @Value("${source.scheduled.batch-size}")
     private int batchSize = 2;
 
     @Scheduled(cron="${source.scheduled.cron}", zone="${source.scheduled.zone}")
