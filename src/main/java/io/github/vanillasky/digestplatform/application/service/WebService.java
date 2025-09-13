@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebService {
 
-    final private ArticleQueryService articleQueryService;
+    final private ArticleService articleService;
 
-    public WebService(ArticleQueryService articleQueryService) {
-        this.articleQueryService = articleQueryService;
+    public WebService(ArticleService articleService) {
+        this.articleService = articleService;
     }
 
     @GetMapping("/articles")
     public ResponseEntity<?> getAllArticles() {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(articleQueryService.getAllArticles());
+                .body(articleService.getAllArticles());
     }
 }

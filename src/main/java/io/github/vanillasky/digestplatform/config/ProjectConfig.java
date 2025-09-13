@@ -4,6 +4,7 @@ import io.github.vanillasky.digestplatform.adapters.out.sources.guardian.Guardia
 import io.github.vanillasky.digestplatform.adapters.out.sources.hackernews.HackerNewsClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @EnableFeignClients(
@@ -12,5 +13,6 @@ import org.springframework.context.annotation.Configuration;
                 GuardianClient.class
         }
 )
+@EnableScheduling
 public class ProjectConfig {
 }

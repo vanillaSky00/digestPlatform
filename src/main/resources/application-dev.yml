@@ -37,6 +37,11 @@ source:
     base-url: https://content.guardianapis.com
     api-key : ${GUARDIAN_API_KEY}
 
+  scheduled:
+    cron: "0 30 14 * * ?"
+    zone: "Asia/Taipei"
+    batch-size: 50
+
   newsapi: {}
 
 # (optional) Feign timeouts/logging

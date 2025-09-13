@@ -1,6 +1,6 @@
 package io.github.vanillasky.digestplatform;
 
-import io.github.vanillasky.digestplatform.application.service.ArticleQueryService;
+import io.github.vanillasky.digestplatform.application.service.ArticleService;
 import io.github.vanillasky.digestplatform.domain.ports.in.AggregateFeedUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +17,11 @@ public class DigestApplication {
         ConfigurableApplicationContext ctx =
             SpringApplication.run(DigestApplication.class, args);
 
-        var useCase = ctx.getBean(AggregateFeedUseCase.class);
+        log.info("Spring Boot Application Started");
+//        var useCase = ctx.getBean(AggregateFeedUseCase.class);
 
-        ArticleQueryService articleQueryService = ctx.getBean(ArticleQueryService.class);
-        articleQueryService.saveAllFeedItem(useCase.topAcrossSources(10));
+//        ArticleService articleService = ctx.getBean(ArticleService.class);
+//        articleService.saveAllFeedItem(useCase.topAcrossSources(10));
 //        useCase.topAcrossSources(10).forEach(i ->
 //                log.info("[USECASE] {} | {} | {} | {} | {} | {} | {}", i.id(), i.source(), i.title(), i.url(), i.author(), i.score(), i.publishedAt())
 //        );

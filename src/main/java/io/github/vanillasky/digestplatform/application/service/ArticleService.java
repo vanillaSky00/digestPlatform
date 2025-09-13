@@ -4,17 +4,16 @@ import io.github.vanillasky.digestplatform.adapters.out.persistence.ArticleMappe
 import io.github.vanillasky.digestplatform.adapters.out.persistence.entity.ArticleEntity;
 import io.github.vanillasky.digestplatform.adapters.out.persistence.repository.ArticleJpaRepository;
 import io.github.vanillasky.digestplatform.domain.model.FeedItem;
-import io.github.vanillasky.digestplatform.domain.model.SourceType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ArticleQueryService {
+public class ArticleService {
 
     private final ArticleJpaRepository articleJpaRepository;
 
-    public ArticleQueryService(
+    public ArticleService(
             ArticleJpaRepository articleJpaRepository
     ) {
         this.articleJpaRepository = articleJpaRepository;

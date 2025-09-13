@@ -8,7 +8,7 @@ import com.linecorp.bot.spring.boot.handler.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.handler.annotation.LineMessageHandler;
 import com.linecorp.bot.webhook.model.Event;
 import com.linecorp.bot.webhook.model.MessageEvent;
-import io.github.vanillasky.digestplatform.application.service.ArticleQueryService;
+import io.github.vanillasky.digestplatform.application.service.ArticleService;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import java.util.List;
 @LineMessageHandler
 public class LineWebhookHandler {
     private final MessagingApiClient messagingApiClient;
-    private final ArticleQueryService articleQueryService;
+    private final ArticleService articleService;
 
     public LineWebhookHandler(
             MessagingApiClient messagingApiClient,
-            ArticleQueryService articleQueryService) {
+            ArticleService articleService) {
         this.messagingApiClient = messagingApiClient;
-        this.articleQueryService = articleQueryService;
+        this.articleService = articleService;
     }
 
 //    //When a user messages your bot, LINE sends a POST to your webhook URL.
@@ -43,7 +43,7 @@ public class LineWebhookHandler {
     public void handleTextMessageEvent(MessageEvent event) {
         var token = event.replyToken();
 
-        var articles = articleQueryService.latestOfEach(
+        var articles = articleService.latestOfEach(
                 List.of("HN", "GUARDIAN"),
                 5);
 
